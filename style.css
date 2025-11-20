@@ -1,0 +1,150 @@
+/* ===== VARIABLES ===== */
+:root{
+  --bg: #f5f8ff;
+  --card: #ffffff;
+  --text: #0f1724;
+  --muted: #64748b;
+  --accent: #6a5af9;
+  --accent-2: #00bcd4;
+  --danger: #e35b5b;
+  --glass: rgba(255,255,255,0.6);
+  --radius: 12px;
+  --shadow: 0 8px 24px rgba(20,20,40,0.06);
+}
+
+body.dark{
+  --bg: #0f1724;
+  --card: #0b1220;
+  --text: #e6eef8;
+  --muted: #9aa6bf;
+  --accent: #7c6cff;
+  --accent-2: #2ad1d1;
+  --danger: #ff6b6b;
+  --glass: rgba(255,255,255,0.02);
+  --shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+/* ===== BASE ===== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  background:linear-gradient(180deg,var(--bg), #e9f0ff);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition:background 0.35s ease,color 0.35s ease;
+}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding:18px 24px;
+  backdrop-filter: blur(6px);
+  background:var(--glass);
+  border-bottom:1px solid rgba(0,0,0,0.04);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.brand h1{margin:0;font-size:20px;letter-spacing:0.2px}
+.sub{margin:0;font-size:12px;color:var(--muted)}
+
+.controls{display:flex;align-items:center;gap:8px}
+.controls input[type="search"]{
+  width:260px;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(15,23,36,0.06);
+  background:transparent;
+  color:var(--text);
+  outline:none;
+  transition:box-shadow .2s, border-color .2s;
+}
+.controls input[type="search"]:focus{
+  box-shadow:0 6px 18px rgba(102,79,255,0.12);
+  border-color:var(--accent);
+}
+.controls button{border:0;background:transparent;padding:6px;cursor:pointer;font-size:15px}
+
+/* ===== LAYOUT ===== */
+.container{
+  max-width:1100px;
+  margin:28px auto;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns: 420px 1fr;
+  gap:20px;
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-6px)}
+
+/* FORM GRID */
+.form-grid{
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  gap:12px;
+  align-items:center;
+}
+.form-grid input{
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid rgba(15,23,36,0.06);
+  background:transparent;
+  color:var(--text);
+  font-size:14px;
+  outline:none;
+  transition:box-shadow .15s, border-color .15s;
+}
+.form-grid input:focus{box-shadow:0 8px 24px rgba(106,90,249,0.08);border-color:var(--accent)}
+
+.form-actions{grid-column:1/-1;display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+.btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 8px 22px rgba(106,90,249,0.18)}
+.btn.ghost{background:transparent;border:1px solid rgba(15,23,36,0.06);color:var(--text)}
+
+/* TABLE */
+.table-wrap{overflow:auto;margin-top:12px}
+.student-table{width:100%;border-collapse:collapse;min-width:720px}
+.student-table thead th{
+  text-align:left;padding:12px 18px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;font-size:13px;
+}
+.student-table tbody td{
+  padding:12px 18px;border-bottom:1px solid rgba(15,23,36,0.04);vertical-align:middle;font-size:14px;
+}
+.actions-col{width:170px;text-align:center}
+.action-group{display:inline-flex;gap:8px}
+.action-btn{
+  padding:8px 10px;border-radius:9px;border:0;cursor:pointer;font-weight:600;color:#fff;
+  transition:transform .12s ease, opacity .12s ease;
+}
+.action-btn:active{transform:translateY(1px)}
+.edit-btn{background:linear-gradient(90deg,#1ec88b,#1fb57a)}
+.delete-btn{background:linear-gradient(90deg,#ff7b7b,#ff4b4b)}
+
+/* NO DATA */
+#noData{margin-top:12px;color:var(--muted);text-align:center}
+
+/* FOOTER */
+.footer{text-align:center;padding:18px 0;color:var(--muted)}
+
+/* ===== SMALL SCREENS ===== */
+@media (max-width:980px){
+  .container{grid-template-columns:1fr; padding-bottom:20px}
+  .controls input[type="search"]{width:170px}
+  .form-grid{grid-template-columns:1fr}
+  .table-wrap{min-width:unset}
+}
